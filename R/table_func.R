@@ -8,13 +8,21 @@
 ##' @return a string
 ##' @export
 ##' @author Wenjian Yang
+##' @examples
+##' tt <- data.frame(v1=c('A', 'B', 'C'), v2=c(0.3, 0.002131, 0.442132), v3=c(-2.0, 0.5, 1.123))
+##' stringify.table(tt)
+##' 
 stringify.table <- function(tt, row.sep=",", col.sep="|") {
-    if (!is.matrix(tt)) {
+    if (is.data.frame(tt)) {
+        tt <- as.matrix(tt)
+    }
+    if (is.vector(tt)) {
         curr.colnames <- names(tt)
         tt <- matrix(tt, nrow=1, byrow=TRUE)
-    } else {        
+    } else {
         curr.colnames <- colnames(tt)
     }
+
     row.string <- apply(tt, 2, function(x) paste(x, collapse=row.sep))
     paste(paste0(curr.colnames, ":", row.string), collapse=col.sep)
 }
@@ -30,6 +38,9 @@ stringify.table <- function(tt, row.sep=",", col.sep="|") {
 ##' @return a table with proper digits for p-values
 ##' @export
 ##' @author Wenjian Yang
+##' @examples
+##' tt <- data.frame(v1=c('A', 'B', 'C'), v2=c(0.000003, 0.002131, 0.442132), v3=c(-2.0, 0.5, 1.123))
+##' format_pvalue_table(tt, 2)
 format_pvalue_table <- function(x, digits=3) {
     if (is.matrix(x)) {x <- as.data.frame(x)}
     num.cols <- which(sapply(x, is.numeric))

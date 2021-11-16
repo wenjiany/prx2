@@ -20,6 +20,11 @@ a string
 create a string representing a table,
 with default row_separator "," and default column_separator "|"
 }
+\examples{
+tt <- data.frame(v1=c('A', 'B', 'C'), v2=c(0.3, 0.002131, 0.442132), v3=c(-2.0, 0.5, 1.123))
+stringify.table(tt)
+
+}
 \author{
 Wenjian Yang
 }

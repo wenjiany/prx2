@@ -18,6 +18,16 @@ Inverse rank normal transformation for quantative trait
 \details{
 Inverse rank normal transofrmation
 }
+\examples{
+x <- rexp(100)
+rx <- rank.normal.transform(x)
+par(mfrow=c(2, 2))
+plot(rx, x)
+hist(rx, main='rank normalized')
+hist(x, main='original')
+plot(rx, log(x), xlab='rank normalized')
+
+}
 \author{
 Wenjian Yang
 }

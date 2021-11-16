@@ -9,13 +9,18 @@ trans.col(col, alpha = 1)
 \arguments{
 \item{col}{color in string}
 
-\item{alpha}{transparency 0-1}
+\item{alpha}{transparency 0 to 1 from transparent to opaque}
 }
 \value{
 rgb for transparent color
 }
 \description{
 copied from the internet
+}
+\examples{
+n <- 100
+cc <- sample(c('red', 'blue'), n, replace=TRUE)
+plot(rnorm(n), col=trans.col(cc, 0.6), pch=16)
 }
 \author{
 Yang

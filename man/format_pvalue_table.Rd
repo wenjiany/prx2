@@ -19,6 +19,10 @@ Look for columns that representing p-values, range 0 to 1;
 if p-value is less than 1, signif(pvalue, digits);
 else, round(pvalue, digits).
 }
+\examples{
+tt <- data.frame(v1=c('A', 'B', 'C'), v2=c(0.000003, 0.002131, 0.442132), v3=c(-2.0, 0.5, 1.123))
+format_pvalue_table(tt, 2)
+}
 \author{
 Wenjian Yang
 }
