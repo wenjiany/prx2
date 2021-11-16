@@ -58,6 +58,9 @@ boxplot.prx <- function(formula, xaxis.at=1:3, xaxis.label=c('AA', 'AB', 'BB'), 
 ##' @export
 ##' @importFrom viopoints viopoints
 ##' @author Wenjian Yang
+##' @examples
+##' boxviolin(rnorm(100), sample(1:3, 100, replace=TRUE), col=1:3)
+##' boxviolin(rnorm(100), sample(1:3, 100, replace=TRUE), dots.more.args = list(col=1:3), xlab='')
 boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), dots.more.args=list(), cex.axis=0.8, ...) 
 {
   if (!requireNamespace("viopoints", quietly = TRUE)) {

@@ -38,6 +38,10 @@ none
 \description{
 Plot boxplot together with violin dots
 }
+\examples{
+boxviolin(rnorm(100), sample(1:3, 100, replace=TRUE), col=1:3)
+boxviolin(rnorm(100), sample(1:3, 100, replace=TRUE), dots.more.args = list(col=1:3), xlab='')
+}
 \author{
 Wenjian Yang
 }
