@@ -14,7 +14,7 @@ boxstripchart(y, x, ...)
 \item{...}{will be parsed to boxplot and stripchart}
 }
 \value{
-
+nothing
 }
 \description{
 Plot boxplot together with stripchart dotplot.

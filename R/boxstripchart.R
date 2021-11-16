@@ -1,9 +1,12 @@
+##' @importFrom graphics axis box boxplot points text
+NULL
+
 ##' Plot boxplot together with stripchart dotplot.
 ##' 
 ##' @param y values
 ##' @param x groups
 ##' @param ... will be parsed to boxplot and stripchart
-##' @return
+##' @return nothing
 ##' @export
 ##' @author Wenjian Yang
 boxstripchart <- function(y, x, ...) {
@@ -34,9 +37,9 @@ boxstripchart <- function(y, x, ...) {
 boxplot.prx <- function(formula, xaxis.at=1:3, xaxis.label=c('AA', 'AB', 'BB'), point.col='red', pch=16, alpha=0.5, jitter.factor=0.2, ...) {
     boxplot(formula, axes=FALSE, axes=FALSE, ...)
     box(bty='l')
-    axis(2); axis(1, at=xaxis.at, label=xaxis.label)
+    axis(2); axis(1, at=xaxis.at, labels=xaxis.label)
 
-    yx <- eval(attributes(terms(formula))$variables, parent.frame())
+    yx <- eval(attributes(stats::terms(formula))$variables, parent.frame())
     
     points(jitter(yx[[2]], factor=jitter.factor)+1, yx[[1]], col=trans.col(point.col, alpha), pch=pch)
 }
@@ -96,11 +99,11 @@ boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), do
   box(bty = "L")
   axis(2, at=c(0.05, 0.1, 0.5, 1, 5, 10, 50), labels=c(0.05, 0.10, 0.50, 1.0, 5.0, 10, 50))
   if (is.null(xtext.adj)) {
-    axis(1, at = 1:nlevels(x.factor), label = paste0(levels(x.factor), 
+    axis(1, at = 1:nlevels(x.factor), labels = paste0(levels(x.factor), 
                                                      "\n(n=", x.count, ")"), srt = srt, cex.axis=cex.axis)
   }
   else {
-    axis(1, at = 1:nlevels(x.factor), label = FALSE)
+    axis(1, at = 1:nlevels(x.factor), labels = FALSE)
     text(x = 1:nlevels(x.factor), y = xtext.adj, labels = paste0(levels(x.factor), 
                                                                  "\n(n=", x.count, ")"), srt = srt, adj = 1, xpd = TRUE, cex.axis=cex.axis)
   }

@@ -30,7 +30,7 @@ stringify.table <- function(tt, row.sep=",", col.sep="|") {
 ##' @return a table with proper digits for p-values
 ##' @export
 ##' @author Wenjian Yang
-format.table.pvalue <- function(x, digits=3) {  
+format_pvalue_table <- function(x, digits=3) {  
   num.cols <- which(sapply(x, is.numeric))
   for (i in num.cols) {
     curr.values <- x[[i]]
