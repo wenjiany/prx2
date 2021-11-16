@@ -1,10 +1,10 @@
 Package: prx2
-Title: What the Package Does (One Line, Title Case)
+Title: Some simple utility functions for everyday work
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Wenjian", "Yang", , "wenjian.yang@stjude.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7305-5649"))
+Description: Provide some simple utility functions to facility data analysis.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -13,5 +13,4 @@ RoxygenNote: 7.1.1
 Suggests: 
     viopoints
 Imports: 
-    graphics,
-    stats
+
