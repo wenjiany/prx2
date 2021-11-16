@@ -3,6 +3,8 @@
 export(boxstripchart)
 export(boxviolin)
 export(format_pvalue_table)
+export(get_conf_int)
+export(get_odds_ratio)
 export(rank.normal.transform)
 export(stringify.table)
 export(trans.col)

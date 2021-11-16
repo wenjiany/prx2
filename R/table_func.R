@@ -30,19 +30,21 @@ stringify.table <- function(tt, row.sep=",", col.sep="|") {
 ##' @return a table with proper digits for p-values
 ##' @export
 ##' @author Wenjian Yang
-format_pvalue_table <- function(x, digits=3) {  
-  num.cols <- which(sapply(x, is.numeric))
-  for (i in num.cols) {
-    curr.values <- x[[i]]
-    curr.min <- min(curr.values, na.rm=TRUE)
-    curr.max <- max(curr.values, na.rm=TRUE)
-    like.pvalue <- curr.min >= 0 & curr.max <= 1
-    if (like.pvalue) {
-      x[[i]] <- as.character(ifelse(curr.values < 0.01, signif(curr.values, digits), round(curr.values, digits))) 
-    } else {
-      x[[i]] <- round(curr.values, digits)
+format_pvalue_table <- function(x, digits=3) {
+    if (is.matrix(x)) {x <- as.data.frame(x)}
+    num.cols <- which(sapply(x, is.numeric))
+    for (i in num.cols) {
+        curr.values <- x[[i]]
+        curr.min <- min(curr.values, na.rm=TRUE)
+        curr.max <- max(curr.values, na.rm=TRUE)
+        like.pvalue <- curr.min >= 0 & curr.max <= 1
+        if (like.pvalue) {
+            x[[i]] <- as.character(ifelse(curr.values < 0.01, signif(curr.values, digits), round(curr.values, digits))) 
+        } else {
+            print(curr.values)
+            x[[i]] <- round(curr.values, digits)
+        }
     }
-  }
-  return(x)
+    return(x)
 }
 
