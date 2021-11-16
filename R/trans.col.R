@@ -2,11 +2,12 @@
 ##'
 ##' copied from the internet
 ##' 
-##' @param col 
-##' @param alpha 
-##' @return 
+##' @param col color in string
+##' @param alpha transparency 0-1
+##' @return rgb for transparent color
+##' @export
 ##' @author Yang
 trans.col <- function(col, alpha=1) {
-    do.call(rgb, as.list(c(col2rgb(col)/255, alpha)))
+    do.call(grDevices::rgb, as.list(c(grDevices::col2rgb(col)/255, alpha)))
 }
 

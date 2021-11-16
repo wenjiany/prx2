@@ -3,7 +3,8 @@
 ##' @param y values
 ##' @param x groups
 ##' @param ... will be parsed to boxplot and stripchart
-##' @return 
+##' @return
+##' @export
 ##' @author Wenjian Yang
 boxstripchart <- function(y, x, ...) {
 
@@ -13,7 +14,7 @@ boxstripchart <- function(y, x, ...) {
   x.lim <- c(min(x.num, na.rm=TRUE) - 0.5, max(x.num, na.rm=TRUE) + 0.5)
   
   y.sorted <- unique(sort(y))
-  pstep <- quantile(y.sorted[-1] - y.sorted[-length(y.sorted)], 0.1)
+  pstep <- stats::quantile(y.sorted[-1] - y.sorted[-length(y.sorted)], 0.1)
   
   ## get min/max
   pp <- boxplot(y ~ x, plot=FALSE)
@@ -21,12 +22,12 @@ boxstripchart <- function(y, x, ...) {
   pmax <- max(pp$stats) + pstep
 
   boxplot.args <- list(formula=y ~ x, outline=FALSE, ylim=c(pmin, pmax))
-  boxplot.args <- modifyList(boxplot.args, user.args)
+  boxplot.args <- utils::modifyList(boxplot.args, user.args)
 
   do.call('boxplot', boxplot.args)
 
   strip.args <- list(x=y ~ x, vert=T, add=T, col="red", pch=16, method="jitter", xlim=x.lim)
-  strip.args <- modifyList(strip.args, user.args)
+  strip.args <- utils::modifyList(strip.args, user.args)
   do.call('stripchart', strip.args)
 }
 
@@ -42,15 +43,16 @@ boxplot.prx <- function(formula, xaxis.at=1:3, xaxis.label=c('AA', 'AB', 'BB'), 
 
 ##' Plot boxplot together with violin dots
 ##' 
-##' @param y 
-##' @param x 
-##' @param srt 
-##' @param xtext.adj 
+##' @param y variable to plot
+##' @param x group variable
+##' @param srt angle of x-axis annotation 
+##' @param xtext.adj placement of x-axis nnotation
 ##' @param box.more.args list of args for boxplot 
 ##' @param dots.more.args list of args for dots, col/pch are by group 
-##' @param cex.axis 
-##' @param ... 
+##' @param cex.axis size of axis labels
+##' @param ... additional argments to parse down to boxplot and viopoints
 ##' @return none
+##' @export
 ##' @author Wenjian Yang
 boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), dots.more.args=list(), cex.axis=0.8, ...) 
 {
@@ -72,7 +74,7 @@ boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), do
   x.lim <- c(min(x.num, na.rm = TRUE) - 0.5, max(x.num, na.rm = TRUE) + 
                0.5)
   y.sorted <- unique(sort(y))
-  pstep <- quantile(y.sorted[-1] - y.sorted[-length(y.sorted)], 
+  pstep <- stats::quantile(y.sorted[-1] - y.sorted[-length(y.sorted)], 
                     0.1)
   if (is.na(pstep)) {
     pstep <- 0
@@ -86,8 +88,8 @@ boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), do
   
   boxplot.args <- list(formula = y ~ x, outline = FALSE, ylim = c(pmin, 
                                                                   pmax))
-  boxplot.args <- modifyList(boxplot.args, user.args)
-  boxplot.args <- modifyList(boxplot.args, box.more.args)
+  boxplot.args <- utils::modifyList(boxplot.args, user.args)
+  boxplot.args <- utils::modifyList(boxplot.args, box.more.args)
   
   boxplot.args$axes = FALSE
   do.call("boxplot", boxplot.args)
@@ -104,8 +106,8 @@ boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), do
   }
   vio.args <- list(y, groups = x, col = "red", add = TRUE, 
                    pch = 16, method = "violin")
-  vio.args <- modifyList(vio.args, user.args)
-  vio.args <- modifyList(vio.args, dots.more.args)
+  vio.args <- utils::modifyList(vio.args, user.args)
+  vio.args <- utils::modifyList(vio.args, dots.more.args)
   do.call("viopoints::viopoints", vio.args)
   
   boxplot.args$add <- TRUE

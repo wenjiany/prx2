@@ -5,7 +5,8 @@
 ##' @param tt table
 ##' @param row.sep row_separator, default ","
 ##' @param col.sep column_separator, default "|"
-##' @return a string 
+##' @return a string
+##' @export
 ##' @author Wenjian Yang
 stringify.table <- function(tt, row.sep=",", col.sep="|") {
     if (!is.matrix(tt)) {
@@ -18,17 +19,17 @@ stringify.table <- function(tt, row.sep=",", col.sep="|") {
     paste(paste0(curr.colnames, ":", row.string), collapse=col.sep)
 }
 
-
-
 ##' Format pvalues in a table
 ##'
-##' Look for columns that representing p-values, range [0-1]
-##' if p-value is less than 1, signif(pvalue, digits)
-##' else, round(pvalue, digits)
+##' Look for columns that representing p-values, range 0 to 1;
+##' if p-value is less than 1, signif(pvalue, digits);
+##' else, round(pvalue, digits).
 ##' 
-##' @param x 
-##' @return 
-##' @author Yang
+##' @param x table
+##' @param digits digits to keep for p-values
+##' @return a table with proper digits for p-values
+##' @export
+##' @author Wenjian Yang
 format.table.pvalue <- function(x, digits=3) {  
   num.cols <- which(sapply(x, is.numeric))
   for (i in num.cols) {
