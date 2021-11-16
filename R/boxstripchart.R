@@ -56,6 +56,7 @@ boxplot.prx <- function(formula, xaxis.at=1:3, xaxis.label=c('AA', 'AB', 'BB'), 
 ##' @param ... additional argments to parse down to boxplot and viopoints
 ##' @return none
 ##' @export
+##' @importFrom viopoints viopoints
 ##' @author Wenjian Yang
 boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), dots.more.args=list(), cex.axis=0.8, ...) 
 {
@@ -111,7 +112,7 @@ boxviolin <- function (y, x, srt = 0, xtext.adj = NULL, box.more.args=list(), do
                    pch = 16, method = "violin")
   vio.args <- utils::modifyList(vio.args, user.args)
   vio.args <- utils::modifyList(vio.args, dots.more.args)
-  do.call("viopoints::viopoints", vio.args)
+  do.call("viopoints", vio.args)
   
   boxplot.args$add <- TRUE
   boxplot.args$col <- NA
